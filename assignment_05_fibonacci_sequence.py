@@ -48,4 +48,64 @@
 # =============================================================================
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
+def generate_fibonacci_terms(n):
+    """Return a list containing the first n Fibonacci numbers (uses a loop)."""
+    sequence = []
+    a, b = 0, 1
+    for _ in range(n):
+        sequence.append(a)
+        a, b = b, a + b
+    return sequence
 
+
+def print_first_n_terms():
+    """PART A: Ask for N and print the first N Fibonacci terms on one line."""
+    try:
+        n = int(input("How many terms? "))
+    except ValueError:
+        print("Error: Please enter a valid positive integer.")
+        return
+
+    if n <= 0:
+        print("Error: N must be a positive integer.")
+        return
+
+    sequence = generate_fibonacci_terms(n)
+    print("Fibonacci sequence:", " ".join(str(num) for num in sequence))
+
+
+def is_fibonacci_number(number):
+    """Return True if number is a Fibonacci number, using a loop (no recursion)."""
+    if number < 0:
+        return False
+
+    a, b = 0, 1
+    while a <= number:
+        if a == number:
+            return True
+        a, b = b, a + b
+    return False
+
+
+def check_number():
+    """PART B: Ask for a number and report whether it's a Fibonacci number."""
+    try:
+        number = int(input("Enter a number to check: "))
+    except ValueError:
+        print("Error: Please enter a valid integer.")
+        return
+
+    if is_fibonacci_number(number):
+        print(f"{number} is in the Fibonacci sequence.")
+    else:
+        print(f"{number} is NOT in the Fibonacci sequence.")
+
+
+def main():
+    print_first_n_terms()
+    print()
+    check_number()
+
+
+if __name__ == "__main__":
+    main()
