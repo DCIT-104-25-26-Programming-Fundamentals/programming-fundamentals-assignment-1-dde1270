@@ -38,4 +38,74 @@
 # =============================================================================
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
+def calculate_sum(numbers):
+    total = 0
+    for num in numbers:
+        total += num
+    return total
 
+def calculate_average(numbers):
+    total = calculate_sum(numbers)
+    return total / len(numbers)
+
+def calculate_max(numbers):
+    largest = numbers[0]
+    for num in numbers:
+        if num > largest:
+            largest = num
+    return largest
+
+def calculate_min(numbers):
+    smallest = numbers[0]
+    for num in numbers:
+        if num < smallest:
+            smallest = num
+    return smallest
+
+def get_numbers_from_user():
+    while True:
+        try:
+            n = int(input("Enter the number of elements: "))
+        except ValueError:
+            print("Please enter a valid integer.")
+            return None
+
+        if n <= 0:
+            print("Please enter a positive integer.")
+            return None
+
+        break
+
+    numbers=[]
+    for i in range(1, n + 1):
+        while True:
+            try:
+                value = float(input(f"Enter number {i}"))
+                if value == int(value):
+                    value = int(value)
+                    numbers.append(value)
+                    break
+            except ValueError:
+                print("Please enter a valid number.")
+
+    return numbers
+
+def main():
+    numbers = get_numbers_from_user()
+
+    if numbers is None:
+        return
+
+    total = calculate_sum(numbers)
+    average = calculate_average(numbers)
+    largest = calculate_max(numbers)
+    smallest = calculate_min(numbers)
+
+    print("\nResults:")
+    print(f"Sum: {total}")
+    print(f"Average: {average}")
+    print(f"Maximum: {largest}")
+    print(f"Minimum: {smallest}")
+
+if __name__ == "__main__":
+    main()
